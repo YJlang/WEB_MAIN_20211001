@@ -13,9 +13,9 @@ function show_time(){
     setTimeout(show_time, 1000); //1초마다 갱신
 }
 
-function close_window(){
+/*function close_window(){
     window.close();
-}
+}*/
 
 clearTimeout(close_time); //재호출정지
 close_time = setTimeout("close_window()", 10000); //1/1000 초 지정, 바로시작
@@ -42,6 +42,9 @@ function show_clock(){
     setTimeout(show_clock, 1000); //1초마다 갱신
     }
 //================================================================================//
+
+
+
 
 
 
