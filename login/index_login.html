@@ -12,6 +12,7 @@
     <script src="js/google_search.js" defer></script> <!--defer란 옵션 붙여서 무조건 자바스크립트가 먼저 로딩되게끔-->
     <script src="js/data_type.js" defer></script>
     <script type="text/javascript" src="../js/pop_up.js" defer></script>
+    <script type="text/javascript" src="../js/return_logout.js" defer></script>
     <style>
         body {
             background-color: black; /* 배경색을 black 또는 dark로 변경 */
@@ -72,7 +73,7 @@
             <form class="d-flex" role="search" onsubmit="return googleSearch();">
               <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="키워드 입력" aria-label="Search">
               <button id="search_btn" class="btn btn-outline-success" id="search_btn" type="submit">검색하기</button> <!-- id 추가 -->
-              <a href="login/logout.html" class="btn btn-outline-success" id="logout_btn">로그아웃</a>
+              <a href="../index.html" class="btn btn-outline-success" id="logout_btn">로그아웃</a>
             </form>
           </div>
         </nav>
