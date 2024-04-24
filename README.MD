@@ -9,3 +9,4 @@ This project is a starting point for a Web application.
 ## 5주차 수업 자바스크립트로 팝업창 띄우기 완료!!
 ## 6주차 총선
 ## 7주차 수업 부트스트랩 로그인 폼 프론트 구현 완료!!
+## 8주차 수업 공백검사 및 xss공격 방어 코드 구현 완료!!
