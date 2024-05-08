@@ -1,3 +1,5 @@
+const idsave_check = document.getElementById(`idSaveCheck`);
+
 //xss 체크 함수
 const check_xss = (input) => {
     // DOMPurify 라이브러리 로드 (CDN 사용)
@@ -14,6 +16,32 @@ const check_xss = (input) => {
     return sanitizedInput;
 };
 
+function setCookie(name, value, expiredays) {
+    var date = new Date();
+    date.setDate(date.getDate() + expiredays);
+    document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString() + "; path=/" + ";SameSite=None; Secure";
+
+}
+    
+
+
+
+function getCookie(name){
+    var cookie = document.cookie;
+    console.log("쿠키를 요청합니다.");
+    if(cookie != ""){
+        var cookie_array = cookie.split("; ");
+        for(var index in cookie_array){
+            var cookie_name = cookie_array[index].split("=");
+
+            if(cookie_name[0] == "popupYN"){
+                return cookie_name[1];
+            }
+        }
+    }
+    return ;
+}
+
 // 공백체크 함수 구현
 const check_input = (event) => {
 
@@ -21,8 +49,6 @@ const check_input = (event) => {
     const loginBtn = document.getElementById('login_btn');
     const emailInput = document.getElementById('typeEmailX');
     const passwordInput = document.getElementById('typePasswordX');
-    const c = '아이디, 패스워드를 체크합니다';
-    alert(c);
     const emailValue = emailInput.value.trim();
     const passwordValue = passwordInput.value.trim();
     
@@ -67,11 +93,39 @@ const check_input = (event) => {
         return false;
     }
 
+    if(idsave_check.checked == true){
+        alert("쿠키를 저장합니다.", emailValue);
+        setCookie("id", emailValue, 1); //1일저장
+        alert(`쿠키값 : ${emailValue}`);
+    }
+    else{
+        setCookie("id", emailValue, value, 0);
+    }
+
     
     console.log('이메일:', emailValue);
     console.log('비밀번호:', passwordValue);
     loginForm.submit();
 };
+
+function init(){
+    const emailInput = document.getElementById(`typeEmailX`);
+    const idsave_check = document.getElementById(`idSaveCheck`);
+    let get_id = getCookie("id");
+
+    if(get_id){
+        emailInput.value = get_id;
+        idsave_check.checked = true;
+    }
+}
+
+function login_count(){
+ //   
+}
+
+function logout_count(){
+    //
+}
     
 
 document.getElementById("login_btn").addEventListener('click', check_input);
