@@ -4,7 +4,7 @@ var close_time2 = 50; //10초 설정
 function pop_up(){
     var cookieCheck = getCookie("popupYN");
     if(cookieCheck != "N"){
-        window.open("../popup/popup.html", "팝업테스트", width=400, height=400, top=10, left=10)
+        window.open("../popup/popup.html", "팝업테스트", width=300, height=300, top=10, left=10)
     }
 } //가로400, 세로300, 위 10, 왼쪽 10 여백
 //window.open()함수는 창을 열거나 닫는(.close) 전용 함수
@@ -41,16 +41,19 @@ function setCookie(name, value, expiredays) {
 
 function getCookie(name){
     var cookie = document.cookie;
-    console.log("쿠키를 요청합니다.");
+    //console.log("쿠키를 요청합니다.");
+    //console.log(cookie);
     if(cookie != ""){
         var cookie_array = cookie.split("; ");
+        //console.log(cookie_array);
         for(var index in cookie_array){
             var cookie_name = cookie_array[index].split("=");
-
+            console.log(cookie_name);
             if(cookie_name[0] == "popupYN"){
                 return cookie_name[1];
             }
         }
+        
     }
     return ;
 }
