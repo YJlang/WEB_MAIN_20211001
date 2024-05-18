@@ -1,20 +1,20 @@
-const idsave_check = document.getElementById(`idSaveCheck`);
+const idsave_check = document.getElementById('idSaveCheck');
 
 // 쿠키 생성 함수
 function setCookie(name, value, expiredays) {
     var date = new Date();
     date.setDate(date.getDate() + expiredays);
-    document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString() + "; path=/" + ";SameSite=None; Secure";
+    document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString() + "; path=/; SameSite=None; Secure";
 }
 
 // 쿠키 가져오기 함수
-function getCookie(name){
+function getCookie(name) {
     var cookie = document.cookie;
-    if(cookie != ""){
+    if (cookie != "") {
         var cookieArray = cookie.split("; ");
-        for(var index in cookieArray){
+        for (var index in cookieArray) {
             var cookieName = cookieArray[index].split("=");
-            if(cookieName[0] == name){
+            if (cookieName[0] == name) {
                 return cookieName[1];
             }
         }
@@ -23,40 +23,40 @@ function getCookie(name){
 }
 
 // 페이지 로딩 시 초기화
-function init(){
-    const emailInput = document.getElementById(`typeEmailX`);
-    const idsave_check = document.getElementById(`idSaveCheck`);
+function init() {
+    const emailInput = document.getElementById('typeEmailX');
+    const idsave_check = document.getElementById('idSaveCheck');
     let savedId = getCookie("id");
 
-    if(savedId){
+    if (savedId) {
         emailInput.value = savedId;
         idsave_check.checked = true;
     }
 }
 
 // 로그인 시도 및 로그인 시도 횟수 증가
-function login(){
+function login() {
     const failedLoginCount = getFailedLoginCount();
-    if(failedLoginCount >= 6){
-        const countdown = (timesec) => {
-            if(timesec > 0){
-                setTimeout(() => {
-                    alert(`${timesec}초 뒤에 다시 시도해주세요.`);
-                    countdown(timesec - 1);
-                }, 1000);
+
+    if (failedLoginCount >= 3) {
+        const lockTime = getCookie("lockTime");
+        if (lockTime) {
+            const currentTime = new Date().getTime();
+            if (currentTime < lockTime) {
+                const remainingTime = Math.ceil((lockTime - currentTime) / 1000);
+                alert(`로그인을 ${failedLoginCount}번 실패했습니다. ${remainingTime}초 동안 로그인이 금지됩니다.`);
+                return;
+            } else {
+                setFailedLoginCount(0); // 3분이 지나면 로그인 실패 횟수 초기화
             }
-            else{
-                setFailedLoginCount(0); //타이머가 끝난 후 로그인 실패 횟수 0으로 초기화
-            }
-        };
-        countdown(5);
-        return;
+        }
     }
+
     checkInput();
 }
 
 // 로그인 정보 검증 및 처리 함수
-function checkInput(){
+function checkInput() {
     const loginForm = document.getElementById('login_form');
     const emailInput = document.getElementById('typeEmailX');
     const passwordInput = document.getElementById('typePasswordX');
@@ -102,24 +102,20 @@ function checkInput(){
     // XSS 체크
     const sanitizedEmail = checkXSS(emailValue);
     const sanitizedPassword = checkXSS(passwordValue);
-    if(!sanitizedEmail || !sanitizedPassword){
+    if (!sanitizedEmail || !sanitizedPassword) {
         return false;
     }
 
-    //id쿠키저장
-    if(idsave_check.checked == true){
+    // id 쿠키 저장
+    if (idsave_check.checked == true) {
         alert("쿠키를 저장합니다.", emailValue);
-        setCookie("id", emailValue, 1); //1일동안
-        alert(`쿠키값 : ${emailValue}`)
+        setCookie("id", emailValue, 1); // 1일 동안
+        alert(`쿠키값 : ${emailValue}`);
     }
-
 
     // 폼 제출
     loginForm.submit();
-
 }
-
-
 
 // XSS 체크 함수
 const checkXSS = (input) => {
@@ -133,23 +129,26 @@ const checkXSS = (input) => {
 };
 
 // 로그인 시도 횟수 증가 함수
-function increaseFailedLoginCount(){
-    var count = getFailedLoginCount() || 0;  
+function increaseFailedLoginCount() {
+    var count = getFailedLoginCount() || 0;
     count++;
     setCookie("failedLoginCount", count, 1); // 로그인 실패 횟수 증가
+
+    if (count >= 3) {
+        const lockTime = new Date().getTime() + 3 * 60 * 1000; // 3분 후
+        setCookie("lockTime", lockTime, 1); // 3분 잠금 쿠키 설정
+    }
 }
 
 // 로그인 시도 횟수 가져오기 함수
-function getFailedLoginCount(){
+function getFailedLoginCount() {
     return parseInt(getCookie("failedLoginCount")) || 0;
 }
 
 // 로그인 시도 횟수 설정 함수
-function setFailedLoginCount(count){
+function setFailedLoginCount(count) {
     setCookie("failedLoginCount", count, 1); // 로그인 실패 횟수 설정
 }
-
-
 
 // 로그인 버튼 클릭 시 로그인 처리
 document.getElementById("login_btn").addEventListener('click', login);
