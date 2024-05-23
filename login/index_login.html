@@ -12,6 +12,8 @@
     <script src="js/google_search.js" defer></script> <!--defer란 옵션 붙여서 무조건 자바스크립트가 먼저 로딩되게끔-->
     <script type="text/javascript" src="../js/pop_up.js" defer></script>
     <script type="text/javascript" src="../js/return_logout.js" defer></script>
+    <script type="text/javascript" src="../js/login.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         body {
             background-color: black; /* 배경색을 black 또는 dark로 변경 */
@@ -23,7 +25,7 @@
 </head>
 
 
-<body style="background-color: black;" onload="pop_up();">
+<body style="background-color: black;" onload="init_logined();">
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
