@@ -1,6 +1,20 @@
 var close_time; //시간정보
 var close_time2 = 50; //10초 설정
 
+
+function addJavascript(jsname) { // 자바스크립트 외부 연동
+    var th = document.getElementsByTagName('head')[0];
+    var s = document.createElement('script');
+    s.setAttribute('type','text/javascript');
+    s.setAttribute('src',jsname);
+    th.appendChild(s);
+}
+    
+addJavascript('/js/security.js'); // 암복호화 함수
+addJavascript('/js/session.js'); // 세션 함수
+addJavascript('/js/cookie.js'); // 쿠키 함수
+
+
 function pop_up(){
     var cookieCheck = getCookie("popupYN");
     if(cookieCheck != "N"){
@@ -29,7 +43,7 @@ function out(obj) {
 
 
 
-function setCookie(name, value, expiredays) {
+/*function setCookie(name, value, expiredays) {
     var date = new Date();
     date.setDate(date.getDate() + expiredays);
     document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString() + "; path=/" + ";SameSite=None; Secure";
@@ -56,12 +70,12 @@ function getCookie(name){
         
     }
     return ;
-}
+}*/
 
 function closePopup(){
     if(document.getElementById(`check_popup`).value){
         setCookie("popupYN", "N", 1);
-        console.log("쿠키를 설정합니다.");
+        alert("쿠키를 설정합니다.");
         self.close();
     }
 }

@@ -1,7 +1,19 @@
 const idsave_check = document.getElementById('idSaveCheck');
 
+function addJavascript(jsname) { // 자바스크립트 외부 연동
+    var th = document.getElementsByTagName('head')[0];
+    var s = document.createElement('script');
+    s.setAttribute('type','text/javascript');
+    s.setAttribute('src',jsname);
+    th.appendChild(s);
+}
+    
+addJavascript('/js/security.js'); // 암복호화 함수
+addJavascript('/js/session.js'); // 세션 함수
+addJavascript('/js/cookie.js'); // 쿠키 함수
+
 // 쿠키 생성 함수
-function setCookie(name, value, expiredays) {
+/*function setCookie(name, value, expiredays) {
     var date = new Date();
     date.setDate(date.getDate() + expiredays);
     document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString() + "; path=/; SameSite=None; Secure";
@@ -20,13 +32,13 @@ function getCookie(name) {
         }
     }
     return null;
-}
+}*/
 
 // 페이지 로딩 시 초기화
 function init() {
     const emailInput = document.getElementById('typeEmailX');
     const idsave_check = document.getElementById('idSaveCheck');
-    let savedId = getCookie("id");
+    let savedId = getCookie('id');
 
     if (savedId) {
         emailInput.value = savedId;
@@ -122,7 +134,7 @@ function checkInput() {
 }
 
 // XSS 체크 함수
-const checkXSS = (input) => {
+/*const checkXSS = (input) => {
     const DOMPurify = window.DOMPurify;
     const sanitizedInput = DOMPurify.sanitize(input);
     if (sanitizedInput !== input) {
@@ -130,7 +142,7 @@ const checkXSS = (input) => {
         return false;
     }
     return sanitizedInput;
-};
+};*/
 
 // 로그인 시도 횟수 증가 함수
 function increaseFailedLoginCount() {
@@ -155,7 +167,7 @@ function setFailedLoginCount(count) {
 }
 
 // 세션 저장
-function session_set() { //세션 저장
+/*function session_set() { //세션 저장
     let session_id = document.querySelector("#typeEmailX"); // DOM 트리에서 ID 검색
     let session_pass = document.querySelector("#typePasswordX"); // DOM 트리에서 pass 검색
     if (sessionStorage){
@@ -186,7 +198,7 @@ function session_check(){
         location.href = `../login/index_login.html`; //로그인된 페이지로 이동
     }
 
-}
+}*/
 
 function init_logined(){
     if(sessionStorage){
@@ -198,7 +210,7 @@ function init_logined(){
 }
     
 
-function encodeByAES256(key, data){
+/*function encodeByAES256(key, data){
     const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(key), {
     iv: CryptoJS.enc.Utf8.parse(""),
     padding: CryptoJS.pad.Pkcs7,
@@ -231,7 +243,7 @@ function decrypt_text(){
     const eb = session_get();
     const b = this.decodeByAES256(rk, eb);
     console.log(b);
-}
+}*/
     
 
 // 페이지 로딩 시 초기화 함수 호출
