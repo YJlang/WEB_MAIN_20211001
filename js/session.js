@@ -22,7 +22,8 @@ function session_set(){ //세션 저장(객체방식)
     }
     if (sessionStorage) {
     const objString = JSON.stringify(obj); // 객체 -> JSON 문자열 변환
-    let en_text = encrypt_text(objString); // 암호화
+    const passwordString = JSON.stringify(password)
+    let en_text = encrypt_text(passwordString); // 암호화
     sessionStorage.setItem("Session_Storage_object", objString);
     sessionStorage.setItem("Session_Storage_encrypted", en_text);
     } else {

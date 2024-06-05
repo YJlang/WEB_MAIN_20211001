@@ -133,16 +133,7 @@ function checkInput() {
     loginForm.submit();
 }
 
-// XSS 체크 함수
-/*const checkXSS = (input) => {
-    const DOMPurify = window.DOMPurify;
-    const sanitizedInput = DOMPurify.sanitize(input);
-    if (sanitizedInput !== input) {
-        alert('XSS 공격 가능성이 있는 입력값을 발견했습니다.');
-        return false;
-    }
-    return sanitizedInput;
-};*/
+
 
 // 로그인 시도 횟수 증가 함수
 function increaseFailedLoginCount() {

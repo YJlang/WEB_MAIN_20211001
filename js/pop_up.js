@@ -1,5 +1,5 @@
 var close_time; //시간정보
-var close_time2 = 50; //10초 설정
+var close_time2 = 10; //10초 설정
 
 
 function addJavascript(jsname) { // 자바스크립트 외부 연동
@@ -13,6 +13,8 @@ function addJavascript(jsname) { // 자바스크립트 외부 연동
 addJavascript('/js/security.js'); // 암복호화 함수
 addJavascript('/js/session.js'); // 세션 함수
 addJavascript('/js/cookie.js'); // 쿠키 함수
+addJavascript('/js/destroy.js');
+
 
 
 function pop_up(){
@@ -37,41 +39,6 @@ function out(obj) {
     obj.src="image/LOCO.png";
 }
 
-/*function close_window(){
-    window.close();
-}*/
-
-
-
-/*function setCookie(name, value, expiredays) {
-    var date = new Date();
-    date.setDate(date.getDate() + expiredays);
-    document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString() + "; path=/" + ";SameSite=None; Secure";
-
-}
-    
-
-
-
-function getCookie(name){
-    var cookie = document.cookie;
-    //console.log("쿠키를 요청합니다.");
-    //console.log(cookie);
-    if(cookie != ""){
-        var cookie_array = cookie.split("; ");
-        //console.log(cookie_array);
-        for(var index in cookie_array){
-            var cookie_name = cookie_array[index].split("=");
-            console.log(cookie_name);
-            if(cookie_name[0] == "popupYN"){
-                return cookie_name[1];
-            }
-        }
-        
-    }
-    return ;
-}*/
-
 function closePopup(){
     if(document.getElementById(`check_popup`).value){
         setCookie("popupYN", "N", 1);
@@ -82,7 +49,7 @@ function closePopup(){
 
 
 clearTimeout(close_time); //재호출정지
-close_time = setTimeout("close_window()", 50000); //1/1000 초 지정, 바로시작
+close_time = setTimeout("close_window()", 10000); //1/1000 초 지정, 바로시작
 show_time();//
 //================================================================================================//
 function show_clock(){

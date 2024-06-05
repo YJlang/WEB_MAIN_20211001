@@ -1,4 +1,3 @@
-// XSS 체크 함수
 const checkXSS = (input) => {
     const DOMPurify = window.DOMPurify;
     const sanitizedInput = DOMPurify.sanitize(input);
