@@ -22,7 +22,6 @@
     </style>
 </head>
 
-
 <body style="background-color: black;">
     <section class="vh-100 gradient-custom">
         <div class="container py-5 h-100">
@@ -35,93 +34,98 @@
       
                     <div class="row">
                       <div class="col-md-6 mb-4">
-      
                         <div data-mdb-input-init class="form-outline">
                           <input type="text" id="firstName" class="form-control form-control-lg" />
                           <label class="form-label" for="firstName">성</label>
                         </div>
-      
                       </div>
                       <div class="col-md-6 mb-4">
-      
                         <div data-mdb-input-init class="form-outline">
                           <input type="text" id="lastName" class="form-control form-control-lg" />
                           <label class="form-label" for="lastName">이름</label>
                         </div>
-      
                       </div>
                     </div>
       
                     <div class="row">
                       <div class="col-md-6 mb-4 d-flex align-items-center">
-      
                         <div data-mdb-input-init class="form-outline datepicker w-100">
-                          <input type="text" class="form-control form-control-lg" id="birthdayDate" />
+                          <select id="birthYear" class="form-control form-control-lg">
+                              <option value="" disabled selected>연도</option>
+                              <!-- 연도 옵션을 추가합니다 -->
+                              <script>
+                                  for (let year = 2023; year >= 1900; year--) {
+                                      document.write(`<option value="${year}">${year}</option>`);
+                                  }
+                              </script>
+                          </select>
+                          <select id="birthMonth" class="form-control form-control-lg">
+                              <option value="" disabled selected>월</option>
+                              <!-- 월 옵션을 추가합니다 -->
+                              <script>
+                                  for (let month = 1; month <= 12; month++) {
+                                      document.write(`<option value="${month}">${month}</option>`);
+                                  }
+                              </script>
+                          </select>
+                          <select id="birthDay" class="form-control form-control-lg">
+                              <option value="" disabled selected>일</option>
+                              <!-- 일 옵션을 추가합니다 -->
+                              <script>
+                                  for (let day = 1; day <= 31; day++) {
+                                      document.write(`<option value="${day}">${day}</option>`);
+                                  }
+                              </script>
+                          </select>
                           <label for="birthdayDate" class="form-label">생년월일</label>
                         </div>
-      
                       </div>
                       <div class="col-md-6 mb-4">
-      
                         <h6 class="mb-2 pb-1">성별: </h6>
-      
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                            value="option1" checked />
-                          <label class="form-check-label" for="femaleGender">남자</label>
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender" value="female" checked />
+                          <label class="form-check-label" for="femaleGender">여자</label>
                         </div>
-      
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                            value="option2" />
-                          <label class="form-check-label" for="maleGender">여자</label>
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender" value="male" />
+                          <label class="form-check-label" for="maleGender">남자</label>
                         </div>
-      
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-                            value="option3" />
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender" value="other" />
                           <label class="form-check-label" for="otherGender">그외</label>
                         </div>
-      
                       </div>
                     </div>
       
                     <div class="row">
                       <div class="col-md-6 mb-4 pb-2">
-      
                         <div data-mdb-input-init class="form-outline">
                           <input type="email" id="emailAddress" class="form-control form-control-lg" />
                           <label class="form-label" for="emailAddress">이메일</label>
                         </div>
-      
                       </div>
                       <div class="col-md-6 mb-4 pb-2">
-      
                         <div data-mdb-input-init class="form-outline">
                           <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
                           <label class="form-label" for="phoneNumber">휴대번호</label>
                         </div>
-      
                       </div>
                     </div>
       
                     <div class="row">
                       <div class="col-12">
-      
                         <select class="select form-control-lg">
                           <option value="1" disabled>Choose option</option>
                           <option value="2">A반</option>
                           <option value="3">B반</option>
                         </select>
                         <label class="form-label select-label">분반</label>
-      
                       </div>
                     </div>
       
                     <div class="mt-4 pt-2">
-                        <input class="btn btn-primary btn-lg" onclick="join()" type="button" id="join_btn" value="회원 가입!" />
+                      <input class="btn btn-primary btn-lg" onclick="join()" type="button" id="join_btn" value="회원 가입!" />
                     </div>
-      
                   </form>
                 </div>
               </div>
@@ -129,8 +133,6 @@
           </div>
         </div>
       </section>
-
-
     <div style="display: flex; justify-content: center;">
         <h3 style="font-size: 24px; font-weight: bold; font-style: italic; color: white; font-family: '굴림';"> 라이엇 게임 회사 정보 2024년 x월 작성됨</h3>
     </div>

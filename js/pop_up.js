@@ -25,11 +25,15 @@ function pop_up(){
 } //가로400, 세로300, 위 10, 왼쪽 10 여백
 //window.open()함수는 창을 열거나 닫는(.close) 전용 함수
 
-function show_time(){
-    let divClock = document.getElementById("Time");
-    divClock.innerText = close_time2; //10초 삽입 시작
-    close_time2--; //1초씩 감소
-    setTimeout(show_time, 1000); //1초마다 갱신
+function show_time() {
+    let divClock = document.getElementById('Time');
+    if (divClock) {
+        divClock.innerText = close_time2;
+        close_time2--;
+        setTimeout(show_time, 1000);
+    } else {
+        console.error("Element with ID 'Time' not found.");
+    }
 }
 
 function over(obj) {
