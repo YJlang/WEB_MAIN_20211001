@@ -13,7 +13,7 @@ function addJavascript(jsname) { // 자바스크립트 외부 연동
 addJavascript('/js/security.js'); // 암복호화 함수
 addJavascript('/js/session.js'); // 세션 함수
 addJavascript('/js/cookie.js'); // 쿠키 함수
-addJavascript('/js/destroy.js');
+//addJavascript('/js/destroy.js');
 
 
 
