@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./js/chatbot.js" defer></script>
+  <title>윤준하 상담봇</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .chat-container { width: 80%; max-width: 800px; margin: 0 auto; }
+    .chat-box { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: scroll; }
+    .chat-input { width: 100%; padding: 10px; box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div id="chat-box" class="chat-box"></div>
+    <input type="text" id="chat-input" class="chat-input" placeholder="Type your message here...">
+    <button id="send-button">보내기</button>
+    <button id="back_index">홈페이지 돌아가기</button>
+  </div>
+
+</body>
+</html>

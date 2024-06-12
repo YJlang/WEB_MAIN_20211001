@@ -1,36 +1,47 @@
 class SignUp {
+    // 생성자 함수: 객체가 생성될 때 호출되며, 초기 속성값을 설정합니다.
     constructor(firstName, lastName, birthdayDate, gender, emailAddress, phoneNumber, classNumber, random) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthdayDate = birthdayDate;
-        this.gender = gender;
-        this.emailAddress = emailAddress;
-        this.phoneNumber = phoneNumber;
-        this.classNumber = classNumber;
-        this.random = random;
+        // 객체의 속성들을 설정합니다.
+        this.firstName = firstName;       // 이름
+        this.lastName = lastName;         // 성
+        this.birthdayDate = birthdayDate; // 생일 날짜
+        this.gender = gender;             // 성별
+        this.emailAddress = emailAddress; // 이메일 주소
+        this.phoneNumber = phoneNumber;   // 전화번호
+        this.classNumber = classNumber;   // 반 번호
+        this.random = random;             // 랜덤 값 (예: 타임스탬프)
     }
 
+    // fullName 속성에 대한 getter: 객체의 fullName 속성을 호출할 때 실행됩니다.
     get fullName() {
+        // 이름과 성을 결합하여 반환합니다.
         return `${this.firstName} ${this.lastName}`;
     }
 
+    // fullName 속성에 대한 setter: 객체의 fullName 속성을 설정할 때 실행됩니다.
     set fullName(fullName) {
+        // 공백을 기준으로 이름과 성을 분리하여 각각의 속성에 저장합니다.
         const [firstName, lastName] = fullName.split(" ");
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
+    // contactInfo 속성에 대한 getter: 객체의 contactInfo 속성을 호출할 때 실행됩니다.
     get contactInfo() {
+        // 이메일 주소, 전화번호, 랜덤 값을 결합하여 반환합니다.
         return `${this.emailAddress} ${this.phoneNumber} ${this.random}`;
     }
 
+    // contactInfo 속성에 대한 setter: 객체의 contactInfo 속성을 설정할 때 실행됩니다.
     set contactInfo(contactInfo) {
+        // 공백을 기준으로 이메일 주소, 전화번호, 랜덤 값을 분리하여 각각의 속성에 저장합니다.
         const [emailAddress, phoneNumber, random] = contactInfo.split(" ");
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.random = random;
     }
 }
+
 
 function addJavascript(jsname) {
     var th = document.getElementsByTagName('head')[0];

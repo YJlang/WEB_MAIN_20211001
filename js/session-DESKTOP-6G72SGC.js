@@ -12,44 +12,25 @@
         alert("로컬 스토리지 지원 x");
     }
 }*/
-function session_set(){ // 세션 저장(객체방식)
-    // 이메일 입력 필드의 값을 가져옵니다.
+function session_set(){ //세션 저장(객체방식)
     let id = document.querySelector("#typeEmailX");
-
-    // 패스워드 입력 필드의 값을 가져옵니다.
     let password = document.querySelector("#typePasswordX");
-
-    // 현재 날짜와 시간을 나타내는 랜덤 타임스탬프를 생성합니다.
-    let random = new Date();
-
-    // 객체를 선언하고, 입력된 이메일과 랜덤 타임스탬프를 속성으로 설정합니다.
-    const obj = { 
-        id: id.value, // 이메일 값을 객체의 id 속성에 저장
-        otp: random   // 랜덤 타임스탬프 값을 객체의 otp 속성에 저장
+    let random = new Date(); // 랜덤 타임스탬프
+    
+    let obj = {
+        id : id.value,
+        otp : random
     }
-
-    // sessionStorage가 지원되는지 확인합니다.
     if (sessionStorage) {
-        // 객체를 JSON 문자열로 변환합니다.
-        const objString = JSON.stringify(obj);
-
-        // 패스워드를 JSON 문자열로 변환합니다.
-        const passwordString = JSON.stringify(password.value);
-
-        // 변환된 패스워드 문자열을 암호화합니다.
-        let en_text = encrypt_text(passwordString); 
-
-        // 변환된 객체 문자열을 세션 스토리지에 저장합니다.
-        sessionStorage.setItem("Session_Storage_object", objString);
-
-        // 암호화된 패스워드 문자열을 세션 스토리지에 저장합니다.
-        sessionStorage.setItem("Session_Storage_encrypted", en_text);
+    const objString = JSON.stringify(obj); // 객체 -> JSON 문자열 변환
+    const passwordString = JSON.stringify(password)
+    let en_text = encrypt_text(passwordString); // 암호화
+    sessionStorage.setItem("Session_Storage_object", objString);
+    sessionStorage.setItem("Session_Storage_encrypted", en_text);
     } else {
-        // 세션 스토리지를 지원하지 않는 경우 경고 메시지를 출력합니다.
-        alert("세션 스토리지 지원 x");
+    alert("세션 스토리지 지원 x");
     }
 }
-
     
     
 
